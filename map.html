@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Offset the vanishing point using padding</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+.rounded-rect {
+background: #333434;
+border-radius: 10px;
+box-shadow: 0 0 50px -25px black;
+}
+ 
+.flex-center {
+position: absolute;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+ 
+.flex-center.left {
+left: 0px;
+}
+ 
+.flex-center.right {
+right: 0px;
+}
+ 
+.sidebar-content {
+position: absolute;
+width: 95%;
+height: 95%;
+font-family: "Network Sans 2019";
+font-size: 32px;
+color: #ffffff;
+}
+ 
+.sidebar-toggle {
+position: absolute;
+width: 1.3em;
+height: 1.3em;
+overflow: visible;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+ 
+.sidebar-toggle.left {
+right: -1.5em;
+}
+ 
+.sidebar-toggle.right {
+left: -1.5em;
+}
+ 
+.sidebar-toggle:hover {
+color: #0aa1cf;
+cursor: pointer;
+}
+ 
+.sidebar {
+transition: transform 1s;
+z-index: 1;
+width: 300px;
+height: 100%;
+}
+ 
+/*
+The sidebar styling has them "expanded" by default, we use CSS transforms to push them offscreen
+The toggleSidebar() function removes this class from the element in order to expand it.
+*/
+.left.collapsed {
+transform: translateX(-295px);
+}
+ 
+.right.collapsed {
+transform: translateX(295px);
+}
+</style>
+ 
+<div id="map">
+<div id="left" class="sidebar flex-center left collapsed">
+<div class="sidebar-content rounded-rect flex-center">
+Station Information
+<div
+class="sidebar-toggle rounded-rect left"
+onclick="toggleSidebar('left')"
+>
+&rarr;
+</div>
+</div>
+</div>
+<div id="right" class="sidebar flex-center right collapsed">
+<div class="sidebar-content rounded-rect flex-center">
+Consist
+<div
+class="sidebar-toggle rounded-rect right"
+onclick="toggleSidebar('right')"
+>
+&larr;
+</div>
+</div>
+</div>
+</div>
+ 
+<script>
+	// TO MAKE THE MAP APPEAR YOU MUST
+	// ADD YOUR ACCESS TOKEN FROM
+	// https://account.mapbox.com
+	mapboxgl.accessToken = 'pk.eyJ1IjoibWF4dGh1bSIsImEiOiJja2p0bjZuZHMyZDFsMnBxdXVvZTBzcjY0In0.S9YaXfMwOSqkIrdvCBogTA';
+var center = [-77.01866, 38.888];
+var map = new mapboxgl.Map({
+container: 'map',
+zoom: 12.5,
+center: center,
+pitch: 60,
+style: 'mapbox://styles/mapbox/streets-v11'
+});
+ 
+new mapboxgl.Marker().setLngLat(center).addTo(map);
+ 
+
+</script>
+ 
+</body>
+</html>
