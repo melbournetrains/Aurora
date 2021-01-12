@@ -9,6 +9,13 @@
     box-shadow: 0 0 50px -25px black;
     }
      
+
+    .sidebar-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
     .flex-center {
     position: absolute;
     display: flex;
@@ -29,7 +36,7 @@
     width: 95%;
     height: 95%;
     font-family: "Network Sans 2019";
-    font-size: 32px;
+    font-size: 32rem;
     color: #ffffff;
     }
      
@@ -59,8 +66,8 @@
     .sidebar {
     transition: transform 1s;
     z-index: 1;
-    width: 50vw;
-    height: 100%;
+    width: 25vw;
+    height: 16vh;
     }
      
     /*
