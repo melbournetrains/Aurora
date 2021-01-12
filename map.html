@@ -89,46 +89,94 @@ transform: translateX(295px);
 <div id="map">
 <div id="left" class="sidebar flex-center left collapsed">
 <div class="sidebar-content rounded-rect flex-center">
-Station Information
-<div
-class="sidebar-toggle rounded-rect left"
-onclick="toggleSidebar('left')"
->
-&rarr;
-</div>
-</div>
-</div>
-<div id="right" class="sidebar flex-center right collapsed">
-<div class="sidebar-content rounded-rect flex-center">
-Consist
-<div
-class="sidebar-toggle rounded-rect right"
-onclick="toggleSidebar('right')"
->
-&larr;
-</div>
-</div>
-</div>
-</div>
- 
-<script>
-	// TO MAKE THE MAP APPEAR YOU MUST
-	// ADD YOUR ACCESS TOKEN FROM
-	// https://account.mapbox.com
-	mapboxgl.accessToken = 'pk.eyJ1IjoibWF4dGh1bSIsImEiOiJja2p0bjZuZHMyZDFsMnBxdXVvZTBzcjY0In0.S9YaXfMwOSqkIrdvCBogTA';
-var center = [-77.01866, 38.888];
-var map = new mapboxgl.Map({
-container: 'map',
-zoom: 12.5,
-center: center,
-pitch: 60,
-style: 'mapbox://styles/mapbox/streets-v11'
-});
- 
-new mapboxgl.Marker().setLngLat(center).addTo(map);
- 
+Station Information<html><head>
+    <meta charset="utf-8">
+    <title>Points on a map</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" class="mapboxgl-map"><div class="mapboxgl-canary" style="visibility: hidden;"></div><div class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate"><canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" role="region" width="1920" height="370" style="width: 1920px; height: 370px;"></canvas></div><div class="mapboxgl-control-container"><div class="mapboxgl-ctrl-top-left"></div><div class="mapboxgl-ctrl-top-right"></div><div class="mapboxgl-ctrl-bottom-left"><div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" rel="noopener nofollow" href="https://www.mapbox.com/" aria-label="Mapbox logo"></a></div></div><div class="mapboxgl-ctrl-bottom-right"><div class="mapboxgl-ctrl mapboxgl-ctrl-attrib"><button class="mapboxgl-ctrl-attrib-button" title="Toggle attribution" aria-label="Toggle attribution"></button><div class="mapboxgl-ctrl-attrib-inner" role="list"><a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> <a href="http://www.openstreetmap.org/about/" target="_blank">© OpenStreetMap</a> <a class="mapbox-improve-map" href="https://apps.mapbox.com/feedback/?owner=finneh&amp;id=ckjtu5t9y07rv19rywf2wsr4y&amp;access_token=pk.eyJ1IjoiZmlubmVoIiwiYSI6ImNrODQyZWxiZjBqazAzZm85bndxZTQycW0ifQ.kU3n1xZMj7WA1JSO44f14Q" target="_blank" rel="noopener nofollow" title="Map feedback" aria-label="Map feedback">Improve this map</a></div></div></div></div></div>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZmlubmVoIiwiYSI6ImNrODQyZWxiZjBqazAzZm85bndxZTQycW0ifQ.kU3n1xZMj7WA1JSO44f14Q'; // replace this with your access token
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/finneh/ckjtu5t9y07rv19rywf2wsr4y', // replace this with your style URL
+      center: [144.727318, 37.579090],
+      zoom: 10.7
+    });
+
+    map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['stops'] // replace this with the name of the layer
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.stop_name + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+});
+    </script>
+  <!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
 </script>
- 
+
+</body></html>
+
 </body>
 </html>
