@@ -1,18 +1,22 @@
 <!doctype html>
-<css> 
-html, body {
-  width:  100%;
-  height: 100%;
-  margin: 0;
-}
-</css>  
-  
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />  
   
 <html>
   <head>
     <title>Aurora</title>
   </head>
   <body>
-    <p> :{ you came too early. </p>
+<div> 
+    <div id='map' style='width: 400px; height: 300px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWF4dGh1bSIsImEiOiJja2p0bjZuZHMyZDFsMnBxdXVvZTBzcjY0In0.S9YaXfMwOSqkIrdvCBogTA';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v11'
+});
+  </div> 
+</script>
   </body>
 </html>
