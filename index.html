@@ -30,20 +30,34 @@
     </div>
   </div>
     <div id="map"></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoibWF4dGh1bSIsImEiOiJja2p0bjZuZHMyZDFsMnBxdXVvZTBzcjY0In0.S9YaXfMwOSqkIrdvCBogTA';
-var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/finneh/ckjtu5t9y07rv19rywf2wsr4y',
-});
-function toggleSidebar(id) {
-var elem = document.getElementById(id);
-var classes = elem.className.split(' ');
-var collapsed = classes.indexOf('collapsed') !== -1;
- 
-var padding = {};
- 
-if (collapsed) {
+
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiZmlubmVoIiwiYSI6ImNrODQyZWxiZjBqazAzZm85bndxZTQycW0ifQ.kU3n1xZMj7WA1JSO44f14Q'; // replace this with your access token
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/finneh/ckjtu5t9y07rv19rywf2wsr4y', // replace this with your style URL
+        center: [144.727318, 37.579090],
+        zoom: 10.7
+      });
+  
+      map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['stops'] // replace this with the name of the layer
+    });
+  
+    if (!features.length) {
+      return;
+    }
+  
+    var feature = features[0];
+  
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML('<h3>' + feature.properties.stop_name + '</h3><p>' + feature.properties.description + '</p>')
+      .addTo(map);
+  });
+
+  if (collapsed) {
 // Remove the 'collapsed' class from the class list of the element, this sets it back to the expanded state.
 classes.splice(classes.indexOf('collapsed'), 1);
  
@@ -70,6 +84,6 @@ elem.className = classes.join(' ');
 map.on('load', function () {
 toggleSidebar('left');
 });
-			  </script>
+      </script>
 </body>
 </html>
