@@ -40,6 +40,9 @@
     color: #ffffff;
     }
      
+   .bg-dark{
+     background-color: #333434 !important;
+   } 
     .sidebar-toggle {
     position: absolute;
     width: 1.3em;
@@ -66,8 +69,10 @@
     .sidebar {
     transition: transform 1s;
     z-index: 1;
-    width: 25vw;
-    height: 16vh;
+    min-width: 15vw;
+    max-width: 25vw;
+    min-height: 10vh;
+    max-height: 25vh;
     }
      
     /*
@@ -81,3 +86,14 @@
     .right.collapsed {
     transform: translateX(825px);
     }
+    .mapboxgl-map {
+      font:12px/20px "Network Sans 2019",Arial,Helvetica,sans-serif !important;
+      overflow:hidden;
+      position:relative;
+      -webkit-tap-highlight-color:rgba(0,0,0,0)
+     }
+
+     .mapboxgl-popup{
+       max-width: 50vw !important;
+       min-width: 25vw;
+     }

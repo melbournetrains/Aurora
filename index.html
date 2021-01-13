@@ -8,23 +8,35 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/aurora.css" rel="stylesheet" type="text/css">
+<style>
+  .mapboxgl-map {
+      font:12px/20px Network Sans 2019,Arial,Helvetica,sans-serif;
+      overflow:hidden;
+      position:relative;
+      -webkit-tap-highlight-color:rgba(0,0,0,0)
+     }
+</style>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>Aurora</title>
+    <title>Melbourne Trains Aurora</title>
   </head>
   <body> 
-        <div id="left" class="sidebar flex-center left">
-          <div class="sidebar-content rounded-rect flex-center">
-            <ul class="sidebar-list"><div class="row">
-            <li><h1 class="display-1"> <b>aurora.</b></h1></li>
-            </div>
-            <div class="row">
-           <li><h6 class="display-6">     live transport tracking</h3></li>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">aurora.</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">live transport tracking.</a>
+            </li>
             </ul>
-          </div>
-          </div>
+        </div>
+      </div>
+    </nav>
+       
 
-    </div>
   </div>
     <div id="map"></div>
 
@@ -36,10 +48,10 @@
         center: [144.966964, -37.818305],
         zoom: 10.7
       });
-  
+  //metrostops
       map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['stops'] // replace this with the name of the layer
+      layers: ['metrostops','vlinestops','tramstops'] // replace this with the name of the layer
     });
   
     if (!features.length) {
@@ -50,27 +62,67 @@
   
     var popup = new mapboxgl.Popup({ offset: [0, -15] })
       .setLngLat(feature.geometry.coordinates)
-      .setHTML('<h3>' + feature.properties.stop_name + '</h3><p>' + feature.properties.description + '</p>')
+      .setHTML('<center><h3>' + feature.properties.stop_name + '</h3><p><ul style="font: "Network Sans 2019"; class="sidebar-list"><li>Stop #'+ feature.properties.stop_id + '<li>This is a test.</ul></p>')
       .addTo(map);
   });
       </script>
       <script>
         map.addControl(new mapboxgl.NavigationControl());
       </script>
+      <!--Metro Stop Click Function-->
       <script>
-map.on('click', 'stops', function (e) {
+map.on('click', 'metrostops', function (e) {
 map.flyTo({
-center: e.features[0].geometry.coordinates
+center: e.features[0].geometry.coordinates,
+zoom: 15.2
 });
 });
  
 // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
-map.on('mouseenter', 'stops', function () {
+map.on('mouseenter', 'metrostops', function () {
 map.getCanvas().style.cursor = 'pointer';
 });
  
 // Change it back to a pointer when it leaves.
-map.on('mouseleave', 'stops', function () {
+map.on('mouseleave', 'metrostops', function () {
+map.getCanvas().style.cursor = '';
+});
+      </script>
+      <!--Vline Stop Click Function-->
+      <script>
+        map.on('click', 'vlinestops', function (e) {
+map.flyTo({
+center: e.features[0].geometry.coordinates,
+zoom: 15.2
+});
+});
+ 
+// Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+map.on('mouseenter', 'vlinestops', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'vlinestops', function () {
+map.getCanvas().style.cursor = '';
+});
+      </script>
+       <!--Tram Stop Click Function-->
+       <script>
+        map.on('click', 'tramstops', function (e) {
+map.flyTo({
+center: e.features[0].geometry.coordinates,
+zoom: 15.2
+});
+});
+ 
+// Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+map.on('mouseenter', 'tramstops', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'tramstops', function () {
 map.getCanvas().style.cursor = '';
 });
       </script>
