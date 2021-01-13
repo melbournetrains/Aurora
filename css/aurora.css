@@ -43,6 +43,11 @@
    .bg-dark{
      background-color: #333434 !important;
    } 
+
+   .mapboxgl-ctrl-top-right .mapboxgl-ctrl{
+    margin-top:1em;
+    margin-right: 2em;
+   }
     .sidebar-toggle {
     position: absolute;
     width: 1.3em;
