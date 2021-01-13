@@ -1,12 +1,14 @@
 <!doctype html>
 
+<html>
+  <head>
+    
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
 
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/aurora.css" rel="stylesheet" type="text/css">
-<html>
-  <head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <title>Aurora</title>
   </head>
   <body> 
@@ -51,6 +53,26 @@
       .setHTML('<h3>' + feature.properties.stop_name + '</h3><p>' + feature.properties.description + '</p>')
       .addTo(map);
   });
+      </script>
+      <script>
+        map.addControl(new mapboxgl.NavigationControl());
+      </script>
+      <script>
+map.on('click', 'stops', function (e) {
+map.flyTo({
+center: e.features[0].geometry.coordinates
+});
+});
+ 
+// Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+map.on('mouseenter', 'stops', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'stops', function () {
+map.getCanvas().style.cursor = '';
+});
       </script>
 </body>
 </html>
