@@ -1,104 +1,93 @@
-
-#map{
-    width: 100vw;
-    height: 100vh;
+#map {
+  margin-top: 8vh;
+  width: 100vw;
+  height: 92vh;
 }
+
+.navbar {
+  height: 8vh;
+}
+
 .rounded-rect {
-    background: #333434;
-    border-radius: 10px;
-    box-shadow: 0 0 50px -25px black;
-    }
-     
+  background: #333434;
+  border-radius: 10px;
+  box-shadow: 0 0 50px -25px black;
+}
+.sidebar-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.flex-center {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-center.left {
+  left: 0px;
+}
+.flex-center.right {
+  right: 0px;
+}
+.sidebar-content {
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  font-family: "Network Sans 2019";
+  font-size: 32rem;
+  color: #ffffff;
+}
+.bg-dark{
+  background-color: #333434 !important;
+}
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl{
+  margin-top:1em;
+  margin-right: 2em;
+}
+.sidebar-toggle {
+  position: absolute;
+  width: 1.3em;
+  height: 1.3em;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar-toggle.left {
+  right: -1.5em;
+}
+.sidebar-toggle.right {
+  left: -1.5em;
+}
+.sidebar-toggle:hover {
+  color: #0aa1cf;
+  cursor: pointer;
+}
+.sidebar {
+  transition: transform 1s;
+  z-index: 1;
+  min-width: 15vw;
+  max-width: 25vw;
+  min-height: 10vh;
+  max-height: 25vh;
+}
+/* The sidebar styling has them "expanded" by default, we use CSS transforms to push them offscreen The toggleSidebar() function removes this class from the element in order to expand it. */
+.left.collapsed {
+  transform: translateX(-850px);
+}
+.right.collapsed {
+  transform: translateX(825px);
+}
 
-    .sidebar-list {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
+.mapboxgl-map {
+  font: 12px/20px "Network Sans 2019", Arial, Helvetica, sans-serif !important;
+  overflow: hidden;
+  position: relative;
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+}
 
-    .flex-center {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    }
-     
-    .flex-center.left {
-    left: 0px;
-    }
-     
-    .flex-center.right {
-    right: 0px;
-    }
-     
-    .sidebar-content {
-    position: absolute;
-    width: 95%;
-    height: 95%;
-    font-family: "Network Sans 2019";
-    font-size: 32rem;
-    color: #ffffff;
-    }
-     
-   .bg-dark{
-     background-color: #333434 !important;
-   } 
-
-   .mapboxgl-ctrl-top-right .mapboxgl-ctrl{
-    margin-top:1em;
-    margin-right: 2em;
-   }
-    .sidebar-toggle {
-    position: absolute;
-    width: 1.3em;
-    height: 1.3em;
-    overflow: visible;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    }
-     
-    .sidebar-toggle.left {
-    right: -1.5em;
-    }
-     
-    .sidebar-toggle.right {
-    left: -1.5em;
-    }
-     
-    .sidebar-toggle:hover {
-    color: #0aa1cf;
-    cursor: pointer;
-    }
-     
-    .sidebar {
-    transition: transform 1s;
-    z-index: 1;
-    min-width: 15vw;
-    max-width: 25vw;
-    min-height: 10vh;
-    max-height: 25vh;
-    }
-     
-    /*
-    The sidebar styling has them "expanded" by default, we use CSS transforms to push them offscreen
-    The toggleSidebar() function removes this class from the element in order to expand it.
-    */
-    .left.collapsed {
-    transform: translateX(-850px);
-    }
-     
-    .right.collapsed {
-    transform: translateX(825px);
-    }
-    .mapboxgl-map {
-      font:12px/20px "Network Sans 2019",Arial,Helvetica,sans-serif !important;
-      overflow:hidden;
-      position:relative;
-      -webkit-tap-highlight-color:rgba(0,0,0,0)
-     }
-
-     .mapboxgl-popup{
-       max-width: 50vw !important;
-       min-width: 25vw;
-     }
+.mapboxgl-popup{
+  max-width: 50vw !important;
+  min-width: 25vw;
+}
