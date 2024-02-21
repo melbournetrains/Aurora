@@ -1,75 +1,44 @@
 <!doctype html>
-
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
-
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/aurora.css" rel="stylesheet" type="text/css">
 <html>
   <head>
-    <title>Aurora</title>
-  </head>
-  <body> 
-        <div id="left" class="sidebar flex-center left collapsed">
-          <div class="sidebar-content rounded-rect flex-center">
-            <div class="row">
-            <h1 class="display-1"> <b>aurora.</b></h1>
-            </div>
-            <div class="row">
-            <h3 class="display-3">     live transport tracking</h3>
-            </div>
-          <div
-          class="sidebar-toggle rounded-rect left"
-          onclick="toggleSidebar('left')"
-          >
-          &rarr;
-          </div>
-          </div>
-          </div>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
 
-    </div>
-  </div>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/aurora.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="Aurora">
+    <meta name="application-name" content="Aurora">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#333434">
+
+    <title>Melbourne Trains Aurora</title>
+  </head>
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">aurora.</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">live transport tracking.</a>
+            </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+
     <div id="map"></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoibWF4dGh1bSIsImEiOiJja2p0bjZuZHMyZDFsMnBxdXVvZTBzcjY0In0.S9YaXfMwOSqkIrdvCBogTA';
-var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/finneh/ckjtu5t9y07rv19rywf2wsr4y',
-});
-function toggleSidebar(id) {
-var elem = document.getElementById(id);
-var classes = elem.className.split(' ');
-var collapsed = classes.indexOf('collapsed') !== -1;
- 
-var padding = {};
- 
-if (collapsed) {
-// Remove the 'collapsed' class from the class list of the element, this sets it back to the expanded state.
-classes.splice(classes.indexOf('collapsed'), 1);
- 
-padding[id] = 300; // In px, matches the width of the sidebars set in .sidebar CSS class
-map.easeTo({
-padding: padding,
-duration: 1000 // In ms, CSS transition duration property for the sidebar matches this value
-});
-} else {
-padding[id] = 0;
-// Add the 'collapsed' class to the class list of the element
-classes.push('collapsed');
- 
-map.easeTo({
-padding: padding,
-duration: 1000
-});
-}
- 
-// Update the class list on the element
-elem.className = classes.join(' ');
-}
- 
-map.on('load', function () {
-toggleSidebar('left');
-});
-			  </script>
+
+    <script src="/index.js"></script>
 </body>
 </html>
