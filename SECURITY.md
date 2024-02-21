@@ -2,20 +2,16 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| < alpha   | :x:              |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Please do not create a public issue on GitHub if you find a security vulnerability in Aurora. Instead, please send an email to mail@finneh.xyz with the details of the issue.
+
+We will review your email and get back to you promptly.
+
+Thank you for helping us keep Aurora safe and secure.
