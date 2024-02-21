@@ -1,3 +1,12 @@
+@font-face{
+  font-family: networkSans;
+  src: url("../fonts/NetworkSans-2019-Regular.woff2")
+}
+
+body {
+  font-family: networkSans;
+}
+
 #map {
   margin-top: 8vh;
   width: 100vw;
@@ -81,7 +90,7 @@
 }
 
 .mapboxgl-map {
-  font: 12px/20px "Network Sans 2019", Arial, Helvetica, sans-serif !important;
+  font-family: networkSans;
   overflow: hidden;
   position: relative;
   -webkit-tap-highlight-color: rgba(0,0,0,0)

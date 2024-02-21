@@ -1,26 +1,40 @@
 <!doctype html>
 <html>
   <head>
+    <!-- Load Mapbox GL JS library -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
 
+    <!-- Load Mapbox GL CSS -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
-    <link href="./css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="./css/aurora.css" rel="stylesheet" type="text/css">
+
+    <!-- Load Bootstrap CSS -->
+    <link href="./assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+
+    <!-- Load Aurora CSS -->
+    <link href="./assets/css/aurora.css" rel="stylesheet" type="text/css">
+
+    <!-- Set viewport for mobile devices -->
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <!-- Favicon and app icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="./site.webmanifest">
-    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="mask-icon" href="./assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="apple-mobile-web-app-title" content="Aurora">
     <meta name="application-name" content="Aurora">
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="theme-color" content="#333434">
 
+    <!-- Load index.js module -->
+    <script type="module" src="./assets/js/index.js"></script>
+
+    <!-- Set the title of the page -->
     <title>Melbourne Trains Aurora</title>
   </head>
   <body>
+    <!-- Navigation bar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">aurora.</a>
@@ -32,13 +46,13 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">live transport tracking.</a>
             </li>
-            </ul>
+          </ul>
         </div>
       </div>
     </nav>
 
+    <!-- Map container -->
     <div id="map"></div>
 
-    <script src="./js/index.js"></script>
 </body>
 </html>
